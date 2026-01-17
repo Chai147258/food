@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | จัดการเมนู</title>
+
+<style>
+body{
+  font-family:Arial, sans-serif;
+  background:#111;
+  color:#fff;
+  padding:15px;
+}
+h1{ color:#ff4d4d; }
+input,select,button{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:6px;
+  border:none;
+}
+button{
+  background:#ff4d4d;
+  color:#fff;
+  font-weight:bold;
+}
+.menu{
+  background:#1a1a1a;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔧 จัดการเมนู (Admin)</h1>
+
+<input id="name" placeholder="ชื่อเมนู (ไทย)">
+<input id="price" placeholder="ราคา">
+<input id="image" placeholder="ชื่อไฟล์รูป เช่น images/food/kaprao.jpg">
+
+<select id="category">
+  <option value="food">อาหาร</option>
+  <option value="drink">เครื่องดื่ม</option>
+  <option value="dessert">ของหวาน</option>
+</select>
+
+<button onclick="addMenu()">➕ เพิ่มเมนู</button>
+
+<h2>📋 เมนูทั้งหมด</h2>
+<div id="list"></div>
+
+<script>
+let menus = JSON.parse(localStorage.getItem("menus") || "[]");
+
+function addMenu(){
+  menus.push({
+    name: name.value,
+    price: price.value,
+    image: image.value,
+    category: category.value
+  });
+  localStorage.setItem("menus", JSON.stringify(menus));
+  render();
+}
+
+function render(){
+  list.innerHTML="";
+  menus.forEach((m,i)=>{
+    list.innerHTML += `
+      <div class="menu">
+        ${m.name} - ${m.price} บาท<br>
+        <small>${m.image}</small><br>
+        <button onclick="del(${i})">ลบ</button>
+      </div>`;
+  });
+}
+function del(i){
+  menus.splice(i,1);
+  localStorage.setItem("menus", JSON.stringify(menus));
+  render();
+}
+render();
+</script>
+
+</body>
+</html>
