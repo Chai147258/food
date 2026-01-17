@@ -1,100 +1,165 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title> สั่งอาหาร & เครื่องดื่ม @ลุงชัยบริการ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      
-<h2>เมนูอาหาร</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ร้านอาหารออนไลน์</title>
 
-<div class="menu">
-  <p>🥗 อาหารคลีน - 60 บาท</p>
-  <p>🍛 ข้าวหน้าหมู/ไก่ - 50 บาท</p>
-  <p>🍉 ผลไม้พร้อมทาน - 40 บาท</p>
-  <p>🧋 ชาผลไม้สด - 45 บาท</p>
-  <p>🍹 น้ำผลไม้ - 40 บาท</p>
-  <p>🥤 เฉาก๊วยนมสด - 30 บาท</p>
-</div>
-
-<a href="https://lin.ee/P7ziHYL" target="_blank">
-  <button>📲 สั่งอาหารทาง LINE</button>
-</a>
-      
-      
-    }
-    header {
-      background: linear-gradient(135deg, #8b0000, #000);
-      padding: 20px;
-      text-align: center;
-    }
-    h1 { margin: 0; }
-    .container {
-      padding: 15px;
-    }
-    .item {
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 12px;
-      border-left: 5px solid #8b0000;
-    }
-    .item h3 {
-      margin: 0 0 8px;
-      color: #ff4d4d;
-    }
-    .order {
-      display: block;
-      margin-top: 10px;
-      text-align: center;
-      padding: 10px;
-      background: #8b0000;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    .order:hover {
-      background: #ff1a1a;
-    }
-    footer {
-      text-align: center;
-      padding: 10px;
-      color: #aaa;
-      font-size: 14px;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0d0d0d;
+  color:#fff;
+}
+header{
+  background:linear-gradient(135deg,#8b0000,#000);
+  padding:20px;
+  text-align:center;
+}
+header h1{
+  margin:0;
+  color:#ff4d4d;
+}
+header p{
+  margin:5px 0 0;
+  color:#ccc;
+  font-size:14px;
+}
+.section{
+  padding:15px;
+}
+.section h2{
+  border-left:5px solid #ff4d4d;
+  padding-left:10px;
+  margin-bottom:10px;
+}
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.item{
+  background:#1a1a1a;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #333;
+}
+.item img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+}
+.item .info{
+  padding:8px;
+}
+.item h4{
+  margin:0;
+  font-size:15px;
+}
+.item p{
+  margin:4px 0;
+  color:#ff4d4d;
+  font-size:14px;
+}
+.item a{
+  display:block;
+  margin-top:5px;
+  text-align:center;
+  padding:8px;
+  background:#ff4d4d;
+  color:#fff;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:14px;
+}
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:15px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>ร้านอาหาร & เครื่องดื่ม</h1>
-  <p>สั่งง่าย ส่ง LINE OA</p>
+  <h1>ร้านอาหารออนไลน์</h1>
+  <p>สั่งง่าย ส่งไว ชำระผ่าน K SHOP</p>
 </header>
 
-<div class="container">
+<!-- หมวด อาหาร -->
+<div class="section">
+<h2>🍛 อาหาร</h2>
+<div class="menu">
 
-  <div class="item"><h3>🥗 อาหารคลีน</h3></div>
-  <div class="item"><h3>🍛 ข้าวหน้าต่าง ๆ</h3></div>
-  <div class="item"><h3>🍎 ผลไม้พร้อมทาน</h3></div>
-  <div class="item"><h3>🍹 ชาผลไม้สด</h3></div>
-  <div class="item"><h3>🧃 น้ำผลไม้</h3></div>
-  <div class="item"><h3>🥤 เฉาก๊วยนมสด</h3></div>
-  <div class="item"><h3>☕ เครื่องดื่ม</h3></div>
+<div class="item">
+<img src="https://images.unsplash.com/photo-1604908177225-6d5c31c10c89">
+<div class="info">
+<h4>ข้าวกะเพราไก่</h4>
+<p>60 บาท</p>
+<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+</div>
+</div>
 
-  <a class="order" href="https://lin.ee/P7ziHYL" target="_blank">
-    📲 กดสั่งอาหารทาง LINE OA
-  </a>
+<div class="item">
+<img src="https://images.unsplash.com/photo-1622445275975-721da5c2aeb0">
+<div class="info">
+<h4>ข้าวผัดหมู</h4>
+<p>60 บาท</p>
+<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+</div>
+</div>
 
+</div>
+</div>
+
+<!-- หมวด เครื่องดื่ม -->
+<div class="section">
+<h2>🥤 เครื่องดื่ม</h2>
+<div class="menu">
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1558640479-823c7bdf2c36">
+<div class="info">
+<h4>ชาผลไม้สด</h4>
+<p>45 บาท</p>
+<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+</div>
+</div>
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1604908554160-3d7f7d0b5d9c">
+<div class="info">
+<h4>เฉาก๊วยนมสด</h4>
+<p>40 บาท</p>
+<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- หมวด ของหวาน -->
+<div class="section">
+<h2>🍰 ของหวาน</h2>
+<div class="menu">
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<div class="info">
+<h4>ผลไม้พร้อมทาน</h4>
+<p>50 บาท</p>
+<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+</div>
+</div>
+
+</div>
 </div>
 
 <footer>
-  ชำระเงินผ่าน K SHOP
+© ร้านอาหารออนไลน์ | สั่งผ่าน LINE เท่านั้น
 </footer>
 
 </body>
