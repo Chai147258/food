@@ -1,0 +1,11 @@
+<div class="food-list">
+  <div class="food-item">
+    <img src="https://i.imgur.com/0umadnY.jpg" alt="ข้าวกะเพรา">
+    <p>ข้าวกะเพรา</p>
+  </div>
+
+  <div class="food-item">
+    <img src="https://i.imgur.com/FQh9Z8R.jpg" alt="เฉาก๊วยนมสด">
+    <p>เฉาก๊วยนมสด</p>
+  </div>
+</div>
