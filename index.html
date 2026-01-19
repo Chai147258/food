@@ -6,49 +6,37 @@
 <title>ร้านอาหารออนไลน์</title>
 
 <style>
-<style>
-/* ===== ปุ่มเปลี่ยนภาษาลอย ===== */
-.lang-btn {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 9999;
-}
-
-.lang-btn button {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  background: #000;
-  color: #fff;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
-}
-</style>
-
+/* ===== พื้นฐาน ===== */
 body{
   margin:0;
   font-family: Arial, sans-serif;
   background:#0d0d0d;
   color:#fff;
 }
-.lang{
-  text-align:right;
-  padding:10px;
+
+/* ===== ปุ่มเปลี่ยนภาษาลอย ===== */
+.lang-btn{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:9999;
 }
-.lang button{
-  margin-left:5px;
-  padding:5px 10px;
+.lang-btn button{
+  width:45px;
+  height:45px;
+  border-radius:50%;
   border:none;
-  border-radius:5px;
-  background:#333;
+  font-size:22px;
+  cursor:pointer;
+  background:#000;
   color:#fff;
+  box-shadow:0 3px 8px rgba(0,0,0,0.5);
 }
+
+/* ===== Header ===== */
 header{
   background:linear-gradient(135deg,#8b0000,#000);
   padding:20px;
@@ -63,6 +51,8 @@ header p{
   color:#ccc;
   font-size:14px;
 }
+
+/* ===== Section ===== */
 .section{
   padding:15px;
 }
@@ -71,6 +61,8 @@ header p{
   padding-left:10px;
   margin-bottom:10px;
 }
+
+/* ===== Menu ===== */
 .menu{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -109,6 +101,8 @@ header p{
   border-radius:6px;
   font-size:14px;
 }
+
+/* ===== Footer ===== */
 footer{
   text-align:center;
   font-size:12px;
@@ -116,34 +110,15 @@ footer{
   padding:15px;
 }
 </style>
-
-<div class="lang">
-  <button onclick="setLang('th')">
-    <img src="assets/images/th.png" alt="TH">
-  </button>
-  <button onclick="setLang('cn')">
-    <img src="assets/images/cn.png" alt="CN">
-  </button>
-  <button onclick="setLang('mm')">
-    <img src="assets/images/mm.png" alt="MM">
-  </button>
-</div>
-
-
 </head>
+
+<body>
 
 <!-- ปุ่มเปลี่ยนภาษา -->
 <div class="lang-btn">
   <button onclick="setLang('th')">🇹🇭</button>
   <button onclick="setLang('cn')">🇨🇳</button>
   <button onclick="setLang('mm')">🇲🇲</button>
-</div>
-<body>
-
-<div class="lang">
-  <button onclick="setLang('th')">ไทย</button>
-  <button onclick="setLang('cn')">中文</button>
-  <button onclick="setLang('mm')">မြန်မာ</button>
 </div>
 
 <header>
@@ -159,23 +134,16 @@ footer{
   </p>
 </header>
 
-<!-- หมวด อาหาร -->
+<!-- อาหาร -->
 <div class="section">
-<h2 data-th="🍛 อาหาร"
-    data-cn="🍛 主食"
-    data-mm="🍛 အစားအစာ">🍛 อาหาร</h2>
-
+<h2 data-th="🍛 อาหาร" data-cn="🍛 主食" data-mm="🍛 အစားအစာ">🍛 อาหาร</h2>
 <div class="menu">
 
 <div class="item">
 <img src="images/food/kaprao.jpg">
 <div class="info">
-<h4 data-th="ข้าวกะเพราไก่"
-    data-cn="打抛鸡饭"
-    data-mm="ပင်စိမ်းကြော်ကြက်ထမင်း">ข้าวกะเพราไก่</h4>
-<p data-th="60 บาท"
-   data-cn="60 泰铢"
-   data-mm="၆၀ ဘတ်">60 บาท</p>
+<h4 data-th="ข้าวกะเพราไก่" data-cn="打抛鸡饭" data-mm="ပင်စိမ်းကြော်ကြက်ထမင်း">ข้าวกะเพราไก่</h4>
+<p data-th="60 บาท" data-cn="60 泰铢" data-mm="၆၀ ဘတ်">60 บาท</p>
 <a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
 </div>
 </div>
@@ -183,12 +151,8 @@ footer{
 <div class="item">
 <img src="images/food/friedrice.jpg">
 <div class="info">
-<h4 data-th="ข้าวผัดหมู"
-    data-cn="猪肉炒饭"
-    data-mm="ဝက်သားကြော်ထမင်း">ข้าวผัดหมู</h4>
-<p data-th="60 บาท"
-   data-cn="60 泰铢"
-   data-mm="၆၀ ဘတ်">60 บาท</p>
+<h4 data-th="ข้าวผัดหมู" data-cn="猪肉炒饭" data-mm="ဝက်သားကြော်ထမင်း">ข้าวผัดหมู</h4>
+<p data-th="60 บาท" data-cn="60 泰铢" data-mm="၆၀ ဘတ်">60 บาท</p>
 <a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
 </div>
 </div>
@@ -196,23 +160,16 @@ footer{
 </div>
 </div>
 
-<!-- หมวด เครื่องดื่ม -->
+<!-- เครื่องดื่ม -->
 <div class="section">
-<h2 data-th="🥤 เครื่องดื่ม"
-    data-cn="🥤 饮料"
-    data-mm="🥤 အဖျော်ယမကာ">🥤 เครื่องดื่ม</h2>
-
+<h2 data-th="🥤 เครื่องดื่ม" data-cn="🥤 饮料" data-mm="🥤 အဖျော်ယမကာ">🥤 เครื่องดื่ม</h2>
 <div class="menu">
 
 <div class="item">
 <img src="images/food/fruittea.jpg">
 <div class="info">
-<h4 data-th="ชาผลไม้สด"
-    data-cn="水果茶"
-    data-mm="သစ်သီးလက်ဖက်ရည်">ชาผลไม้สด</h4>
-<p data-th="45 บาท"
-   data-cn="45 泰铢"
-   data-mm="၄၅ ဘတ်">45 บาท</p>
+<h4 data-th="ชาผลไม้สด" data-cn="水果茶" data-mm="သစ်သီးလက်ဖက်ရည်">ชาผลไม้สด</h4>
+<p data-th="45 บาท" data-cn="45 泰铢" data-mm="၄၅ ဘတ်">45 บาท</p>
 <a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
 </div>
 </div>
@@ -220,12 +177,8 @@ footer{
 <div class="item">
 <img src="images/food/grassjelly.jpg">
 <div class="info">
-<h4 data-th="เฉาก๊วยนมสด"
-    data-cn="仙草牛奶"
-    data-mm="မြက်ဂျယ်လီနို့">เฉาก๊วยนมสด</h4>
-<p data-th="40 บาท"
-   data-cn="40 泰铢"
-   data-mm="၄၀ ဘတ်">40 บาท</p>
+<h4 data-th="เฉาก๊วยนมสด" data-cn="仙草牛奶" data-mm="မြက်ဂျယ်လီနို့">เฉาก๊วยนมสด</h4>
+<p data-th="40 บาท" data-cn="40 泰铢" data-mm="၄၀ ဘတ်">40 บาท</p>
 <a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
 </div>
 </div>
@@ -233,9 +186,7 @@ footer{
 </div>
 </div>
 
-<footer>
-© ร้านอาหารออนไลน์ | LINE OA เท่านั้น
-</footer>
+<footer>© ร้านอาหารออนไลน์ | LINE OA เท่านั้น</footer>
 
 <script>
 function setLang(lang){
@@ -245,6 +196,5 @@ function setLang(lang){
 }
 </script>
 
-<script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
