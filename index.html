@@ -6,15 +6,99 @@
 <title>ร้านอาหารออนไลน์</title>
 
 <style>
-/* ===== พื้นฐาน ===== */
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#0d0d0d;
-  color:#fff;
+/* ====== โทนสีหลัก (อิงจากรูปเฉาก๊วย) ====== */
+:root{
+  --bg-main: #4cc6d9;        /* ฟ้าเทอร์ควอยซ์ */
+  --bg-soft: #e9f8fb;        /* ฟ้าอ่อน */
+  --milk: #f5e6d3;           /* นม */
+  --jelly: #5a3a1a;          /* น้ำตาลเฉาก๊วย */
+  --accent: #ffd400;         /* เหลืองเน้นขาย */
+  --dark: #1a1a1a;
 }
 
-/* ===== ปุ่มเปลี่ยนภาษาลอย ===== */
+/* ====== พื้นฐาน ====== */
+body{
+  margin:0;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(180deg,var(--bg-main),var(--bg-soft));
+  color:#222;
+}
+
+/* ====== Header ====== */
+header{
+  text-align:center;
+  padding:25px 15px;
+}
+header h1{
+  margin:0;
+  font-size:28px;
+  color:#fff;
+  text-shadow: 0 3px 0 rgba(0,0,0,0.15);
+}
+header p{
+  margin-top:8px;
+  font-size:14px;
+  color:var(--accent);
+  font-weight:bold;
+}
+
+/* ====== Section ====== */
+.section{
+  padding:15px;
+}
+.section h2{
+  background:#fff;
+  color:var(--jelly);
+  padding:8px 12px;
+  border-radius:10px;
+  display:inline-block;
+  box-shadow:0 3px 6px rgba(0,0,0,0.15);
+}
+
+/* ====== เมนู ====== */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+.item{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+.item img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+}
+.info{
+  padding:10px;
+}
+.info h4{
+  margin:0;
+  font-size:15px;
+  color:var(--jelly);
+}
+.info p{
+  margin:5px 0;
+  font-weight:bold;
+  color:#000;
+}
+.info a{
+  display:block;
+  margin-top:6px;
+  padding:8px;
+  background:var(--accent);
+  color:#000;
+  text-align:center;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* ====== ปุ่มเปลี่ยนภาษาลอย ====== */
 .lang-btn{
   position:fixed;
   bottom:90px;
@@ -25,88 +109,21 @@ body{
   z-index:9999;
 }
 .lang-btn button{
-  width:45px;
-  height:45px;
+  width:46px;
+  height:46px;
   border-radius:50%;
   border:none;
   font-size:22px;
   cursor:pointer;
-  background:#000;
-  color:#fff;
-  box-shadow:0 3px 8px rgba(0,0,0,0.5);
+  background:#fff;
+  box-shadow:0 3px 8px rgba(0,0,0,0.4);
 }
 
-/* ===== Header ===== */
-header{
-  background:linear-gradient(135deg,#8b0000,#000);
-  padding:20px;
-  text-align:center;
-}
-header h1{
-  margin:0;
-  color:#ff4d4d;
-}
-header p{
-  margin:5px 0 0;
-  color:#ccc;
-  font-size:14px;
-}
-
-/* ===== Section ===== */
-.section{
-  padding:15px;
-}
-.section h2{
-  border-left:5px solid #ff4d4d;
-  padding-left:10px;
-  margin-bottom:10px;
-}
-
-/* ===== Menu ===== */
-.menu{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-.item{
-  background:#1a1a1a;
-  border-radius:10px;
-  overflow:hidden;
-  border:1px solid #333;
-}
-.item img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
-}
-.info{
-  padding:8px;
-}
-.info h4{
-  margin:0;
-  font-size:15px;
-}
-.info p{
-  margin:4px 0;
-  color:#ff4d4d;
-}
-.info a{
-  display:block;
-  margin-top:5px;
-  padding:8px;
-  background:#ff4d4d;
-  color:#fff;
-  text-align:center;
-  text-decoration:none;
-  border-radius:6px;
-  font-size:14px;
-}
-
-/* ===== Footer ===== */
+/* ====== Footer ====== */
 footer{
   text-align:center;
   font-size:12px;
-  color:#777;
+  color:#333;
   padding:15px;
 }
 </style>
@@ -127,10 +144,10 @@ footer{
       data-mm="အွန်လိုင်းစားသောက်ဆိုင်">
       ร้านอาหารออนไลน์
   </h1>
-  <p data-th="สั่งง่าย ส่งไว ชำระผ่าน K SHOP"
-     data-cn="轻松下单，支持付款"
-     data-mm="လွယ်ကူစွာအော်ဒါတင်နိုင်သည်">
-     สั่งง่าย ส่งไว ชำระผ่าน K SHOP
+  <p data-th="ไม่เน้นขาย เน้นให้คิดถึง"
+     data-cn="不强调销售，强调记住我们"
+     data-mm="မရောင်းကို အဓိကမထားဘဲ သတိရစေခြင်း">
+     ไม่เน้นขาย เน้นให้คิดถึง
   </p>
 </header>
 
@@ -186,7 +203,9 @@ footer{
 </div>
 </div>
 
-<footer>© ร้านอาหารออนไลน์ | LINE OA เท่านั้น</footer>
+<footer>
+© ร้านอาหารออนไลน์ | LINE OA
+</footer>
 
 <script>
 function setLang(lang){
