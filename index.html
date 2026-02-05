@@ -2,9 +2,8 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ตลาดออนไลน์ | ร้านอาหาร & เครื่องดื่ม</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ตลาดออนไลน์ ร้านอาหาร & เครื่องดื่ม</title>
 <style>
 :root{
   --bg-main:#4cc6d9;
@@ -16,7 +15,9 @@ body{
   font-family:system-ui,sans-serif;
   background:linear-gradient(180deg,var(--bg-main),var(--bg-soft));
 }
-header{text-align:center;padding:30px;color:#fff}
+/* header */
+header{text-align:center;padding:30px;color:#fff;}
+/* menu grid */
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -29,8 +30,8 @@ header{text-align:center;padding:30px;color:#fff}
   overflow:hidden;
   box-shadow:0 6px 14px rgba(0,0,0,.2);
 }
-.item img{width:100%;height:140px;object-fit:cover}
-.info{text-align:center;padding:10px}
+.item img{width:100%;height:140px;object-fit:cover;}
+.info{text-align:center;padding:10px;}
 .order-btn{
   display:block;
   background:var(--accent);
@@ -41,19 +42,10 @@ header{text-align:center;padding:30px;color:#fff}
   cursor:pointer;
   border:none;
 }
-#cartBox{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:300px;
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.3);
-  padding:12px;
-}
+/* cart */
+#cartBox{position:fixed;bottom:20px;right:20px;width:300px;background:#fff;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.3);padding:12px;}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -62,7 +54,10 @@ header{text-align:center;padding:30px;color:#fff}
 </header>
 
 <section>
-  <div id="menu" class="menu"></div>
+  <div id="foodMenu" class="menu"></div>
+</section>
+<section>
+  <div id="drinkMenu" class="menu"></div>
 </section>
 
 <!-- CART -->
@@ -74,7 +69,8 @@ header{text-align:center;padding:30px;color:#fff}
   <button onclick="clearCart()" class="order-btn">ล้างตะกร้า</button>
 </div>
 
-<script src="assets/js/menu.js"></script>
-<script src="assets/js/cart.js"></script>
+<script type="module" src="assets/js/app.js"></script>
+<script type="module" src="assets/js/menu.js"></script>
+<script type="module" src="assets/js/cart.js"></script>
 </body>
 </html>
