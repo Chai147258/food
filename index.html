@@ -66,6 +66,14 @@ header p{color:#ffd400;font-weight:600}
 }
 #gpsStatus{font-size:12px;color:green}
 
+.summary{
+  font-size:14px;
+  margin-top:6px;
+  background:#f6f6f6;
+  padding:8px;
+  border-radius:8px;
+}
+
 footer{text-align:center;font-size:13px;padding:24px}
 </style>
 </head>
@@ -131,8 +139,13 @@ footer{text-align:center;font-size:13px;padding:24px}
 <div id="cartBox">
 <b>🛒 ตะกร้า</b>
 <div id="cartItems"></div>
+
+<div class="summary">
+📏 ระยะทาง: <span id="distance">-</span> กม.<br>
+🚚 ค่าส่ง: <span id="shipping">0</span> บาท<br>
 <hr>
-รวม <b><span id="total">0</span></b> บาท
+<b>รวมสุทธิ: <span id="grandTotal">0</span> บาท</b>
+</div>
 
 <button class="order-btn" onclick="showOrder()">สั่งซื้อ</button>
 
@@ -148,8 +161,13 @@ footer{text-align:center;font-size:13px;padding:24px}
 <footer>© ร้านอาหารออนไลน์</footer>
 
 <script>
+const SHOP_LAT = 13.7563; // 🔴 แก้เป็นพิกัดร้านจริง
+const SHOP_LNG = 100.5018;
+
 let cart=[];
 let lat="",lng="";
+let shippingCost=0;
+let distanceKm=0;
 
 function addToCart(name,price){
   cart.push({name,price});
@@ -164,7 +182,7 @@ function renderCart(){
     box.innerHTML+=`• ${i.name} ${i.price}฿<br>`;
     total+=i.price;
   });
-  document.getElementById("total").innerText=total;
+  document.getElementById("grandTotal").innerText = total + shippingCost;
 }
 
 function showOrder(){
@@ -181,13 +199,39 @@ function getLocation(){
     navigator.geolocation.getCurrentPosition(pos=>{
       lat=pos.coords.latitude;
       lng=pos.coords.longitude;
+
+      distanceKm = calcDistance(SHOP_LAT,SHOP_LNG,lat,lng);
+      shippingCost = calcShipping(distanceKm);
+
+      document.getElementById("distance").innerText = distanceKm.toFixed(1);
+      document.getElementById("shipping").innerText = shippingCost;
+
       document.getElementById("custAddress").value =
         `พิกัดลูกค้า: https://maps.google.com/?q=${lat},${lng}`;
-      document.getElementById("gpsStatus").innerText="📍 ดึงพิกัดอัตโนมัติเรียบร้อย";
+
+      renderCart();
+      document.getElementById("gpsStatus").innerText="📍 คำนวณระยะทางและค่าส่งแล้ว";
     },()=>{
       document.getElementById("gpsStatus").innerText="❌ ไม่สามารถดึงพิกัดได้";
     });
   }
+}
+
+function calcShipping(km){
+  if(km<=33) return 35;
+  return 35 + Math.ceil(km-33)*12;
+}
+
+function calcDistance(lat1,lng1,lat2,lng2){
+  const R=6371;
+  const dLat=(lat2-lat1)*Math.PI/180;
+  const dLng=(lng2-lng1)*Math.PI/180;
+  const a=
+    Math.sin(dLat/2)*Math.sin(dLat/2)+
+    Math.cos(lat1*Math.PI/180)*
+    Math.cos(lat2*Math.PI/180)*
+    Math.sin(dLng/2)*Math.sin(dLng/2);
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
 
 function orderLine(){
@@ -199,9 +243,20 @@ function orderLine(){
     return;
   }
 
-  let msg=`🧾 สั่งอาหาร\nชื่อ: ${name}\nเบอร์: ${phone}\nที่อยู่: ${addr}\n\nรายการ:\n`;
+  let foodTotal=cart.reduce((s,i)=>s+i.price,0);
+
+  let msg=`🧾 สั่งอาหาร
+ชื่อ: ${name}
+เบอร์: ${phone}
+ที่อยู่: ${addr}
+
+📏 ระยะทาง ${distanceKm.toFixed(1)} กม.
+🚚 ค่าส่ง ${shippingCost} บาท
+
+รายการ:
+`;
   cart.forEach(i=>msg+=`- ${i.name} ${i.price}฿\n`);
-  msg+=`รวม ${total.innerText} บาท`;
+  msg+=`\nรวมสุทธิ ${foodTotal+shippingCost} บาท`;
 
   window.open(
     "https://line.me/R/msg/text/?"+encodeURIComponent(msg)
