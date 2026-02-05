@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ตลาดออนไลน์ | ร้านลุงชัย</title>
+<title>ตลาดออนไลน์ | ร้านอาหาร & เครื่องดื่ม</title>
 
 <style>
 :root{
@@ -12,64 +12,44 @@
   --jelly:#5a3a1a;
   --accent:#ffd400;
 }
-
 body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:linear-gradient(180deg,var(--bg-main),var(--bg-soft));
 }
-
-/* Header */
-header{
-  text-align:center;
-  padding:30px 16px;
-  color:#fff;
-}
-header p{ color:var(--accent); }
-
-/* Section */
-.section{
-  max-width:1000px;
-  margin:auto;
-  padding:16px;
-}
-.section h2{
-  background:#fff;
-  padding:8px 16px;
-  border-radius:14px;
-  display:inline-block;
-}
-
-/* Menu */
+header{text-align:center;padding:30px;color:#fff}
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:14px;
-  margin-top:16px;
+  padding:16px;
 }
 .item{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 6px 14px rgba(0,0,0,.18);
+  box-shadow:0 6px 14px rgba(0,0,0,.2);
 }
-.item img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-}
-.info{
-  padding:12px;
-  text-align:center;
-}
+.item img{width:100%;height:140px;object-fit:cover}
+.info{text-align:center;padding:10px}
 .order-btn{
   display:block;
-  padding:10px;
   background:var(--accent);
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:700;
-  color:#000;
+  margin-top:8px;
+  padding:8px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+#cartBox{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:300px;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+  padding:12px;
 }
 </style>
 </head>
@@ -77,27 +57,25 @@ header p{ color:var(--accent); }
 <body>
 
 <header>
-  <h1>ตลาดออนไลน์ ร้านลุงชัย</h1>
+  <h1>ตลาดออนไลน์ ร้านอาหาร & เครื่องดื่ม</h1>
   <p>ไม่เน้นขาย เน้นให้คิดถึง</p>
 </header>
 
-<section class="section">
-  <h2>🍛 อาหาร</h2>
-  <div class="menu" id="foodMenu"></div>
+<section>
+  <div id="menu" class="menu"></div>
 </section>
 
-<section class="section">
-  <h2>🥤 เครื่องดื่ม</h2>
-  <div class="menu" id="drinkMenu"></div>
-</section>
+<!-- CART -->
+<div id="cartBox">
+  <h3>🛒 ตะกร้า</h3>
+  <div id="cartItems"></div>
+  <hr>
+  <b>รวม: <span id="cartTotal">0</span> บาท</b>
+  <button onclick="clearCart()" class="order-btn">ล้างตะกร้า</button>
+</div>
 
-<footer style="text-align:center;padding:20px">
-ตลาดออนไลน์ @ลุงชัยไชโย
-</footer>
-
-<!-- Firebase Scripts -->
 <script type="module" src="assets/js/app.js"></script>
 <script type="module" src="assets/js/menu.js"></script>
-
+<script type="module" src="assets/js/cart.js"></script>
 </body>
 </html>
