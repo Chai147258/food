@@ -6,132 +6,141 @@
 <title>ร้านอาหารออนไลน์</title>
 
 <style>
-/* ====== โทนสีหลัก (อิงจากรูปเฉาก๊วย) ====== */
 :root{
-  --bg-main: #4cc6d9;        /* ฟ้าเทอร์ควอยซ์ */
-  --bg-soft: #e9f8fb;        /* ฟ้าอ่อน */
-  --milk: #f5e6d3;           /* นม */
-  --jelly: #5a3a1a;          /* น้ำตาลเฉาก๊วย */
-  --accent: #ffd400;         /* เหลืองเน้นขาย */
-  --dark: #1a1a1a;
+  --bg-main:#4cc6d9;
+  --bg-soft:#e9f8fb;
+  --jelly:#5a3a1a;
+  --accent:#ffd400;
+  --dark:#1a1a1a;
 }
 
-/* ====== พื้นฐาน ====== */
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  font-family: "Arial", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: linear-gradient(180deg,var(--bg-main),var(--bg-soft));
   color:#222;
 }
 
-/* ====== Header ====== */
+/* ===== Header ===== */
 header{
   text-align:center;
-  padding:25px 15px;
+  padding:30px 15px 20px;
 }
 header h1{
   margin:0;
-  font-size:28px;
+  font-size:30px;
   color:#fff;
-  text-shadow: 0 3px 0 rgba(0,0,0,0.15);
 }
 header p{
   margin-top:8px;
-  font-size:14px;
   color:var(--accent);
-  font-weight:bold;
+  font-weight:600;
 }
 
-/* ====== Section ====== */
+/* ===== Section ===== */
 .section{
   padding:15px;
+  max-width:1000px;
+  margin:auto;
 }
 .section h2{
   background:#fff;
   color:var(--jelly);
-  padding:8px 12px;
-  border-radius:10px;
+  padding:8px 14px;
+  border-radius:12px;
   display:inline-block;
-  box-shadow:0 3px 6px rgba(0,0,0,0.15);
+  box-shadow:0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* ====== เมนู ====== */
+/* ===== Menu Grid ===== */
 .menu{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:12px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+  margin-top:14px;
 }
+
 .item{
   background:#fff;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  box-shadow:0 6px 14px rgba(0,0,0,0.18);
+  transition:transform .2s, box-shadow .2s;
 }
+.item:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
 .item img{
   width:100%;
-  height:120px;
+  height:140px;
   object-fit:cover;
 }
+
 .info{
-  padding:10px;
+  padding:12px;
+  text-align:center;
 }
 .info h4{
   margin:0;
-  font-size:15px;
+  font-size:16px;
   color:var(--jelly);
 }
 .info p{
-  margin:5px 0;
-  font-weight:bold;
-  color:#000;
-}
-.info a{
-  display:block;
-  margin-top:6px;
-  padding:8px;
-  background:var(--accent);
-  color:#000;
-  text-align:center;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:bold;
+  margin:6px 0 8px;
+  font-weight:700;
+  font-size:15px;
 }
 
-/* ====== ปุ่มเปลี่ยนภาษาลอย ====== */
+.info a{
+  display:block;
+  padding:10px;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:700;
+}
+
+/* ===== Language Button ===== */
 .lang-btn{
   position:fixed;
   bottom:90px;
-  right:20px;
+  right:18px;
   display:flex;
   flex-direction:column;
   gap:10px;
-  z-index:9999;
+  z-index:999;
 }
 .lang-btn button{
-  width:46px;
-  height:46px;
+  width:48px;
+  height:48px;
   border-radius:50%;
   border:none;
   font-size:22px;
-  cursor:pointer;
   background:#fff;
-  box-shadow:0 3px 8px rgba(0,0,0,0.4);
+  box-shadow:0 4px 10px rgba(0,0,0,0.4);
+  cursor:pointer;
 }
 
-/* ====== Footer ====== */
+/* ===== Footer ===== */
 footer{
   text-align:center;
-  font-size:12px;
+  font-size:13px;
+  padding:20px 10px 30px;
   color:#333;
-  padding:15px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ปุ่มเปลี่ยนภาษา -->
+<!-- Language Switch -->
 <div class="lang-btn">
   <button onclick="setLang('th')">🇹🇭</button>
   <button onclick="setLang('cn')">🇨🇳</button>
@@ -151,8 +160,8 @@ footer{
   </p>
 </header>
 
-<!-- อาหาร -->
-<div class="section">
+<!-- Food -->
+<section class="section">
 <h2 data-th="🍛 อาหาร" data-cn="🍛 主食" data-mm="🍛 အစားအစာ">🍛 อาหาร</h2>
 <div class="menu">
 
@@ -161,7 +170,12 @@ footer{
 <div class="info">
 <h4 data-th="ข้าวกะเพราไก่" data-cn="打抛鸡饭" data-mm="ပင်စိမ်းကြော်ကြက်ထမင်း">ข้าวกะเพราไก่</h4>
 <p data-th="60 บาท" data-cn="60 泰铢" data-mm="၆၀ ဘတ်">60 บาท</p>
-<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+<a href="https://lin.ee/P7ziHYL"
+   data-th="สั่งเมนูนี้"
+   data-cn="立即订购"
+   data-mm="မှာယူရန်">
+   สั่งเมนูนี้
+</a>
 </div>
 </div>
 
@@ -170,15 +184,20 @@ footer{
 <div class="info">
 <h4 data-th="ข้าวผัดหมู" data-cn="猪肉炒饭" data-mm="ဝက်သားကြော်ထမင်း">ข้าวผัดหมู</h4>
 <p data-th="60 บาท" data-cn="60 泰铢" data-mm="၆၀ ဘတ်">60 บาท</p>
-<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+<a href="https://lin.ee/P7ziHYL"
+   data-th="สั่งเมนูนี้"
+   data-cn="立即订购"
+   data-mm="မှာယူရန်">
+   สั่งเมนูนี้
+</a>
 </div>
 </div>
 
 </div>
-</div>
+</section>
 
-<!-- เครื่องดื่ม -->
-<div class="section">
+<!-- Drink -->
+<section class="section">
 <h2 data-th="🥤 เครื่องดื่ม" data-cn="🥤 饮料" data-mm="🥤 အဖျော်ယမကာ">🥤 เครื่องดื่ม</h2>
 <div class="menu">
 
@@ -187,7 +206,12 @@ footer{
 <div class="info">
 <h4 data-th="ชาผลไม้สด" data-cn="水果茶" data-mm="သစ်သီးလက်ဖက်ရည်">ชาผลไม้สด</h4>
 <p data-th="45 บาท" data-cn="45 泰铢" data-mm="၄၅ ဘတ်">45 บาท</p>
-<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+<a href="https://lin.ee/P7ziHYL"
+   data-th="สั่งเมนูนี้"
+   data-cn="立即订购"
+   data-mm="မှာယူရန်">
+   สั่งเมนูนี้
+</a>
 </div>
 </div>
 
@@ -196,12 +220,17 @@ footer{
 <div class="info">
 <h4 data-th="เฉาก๊วยนมสด" data-cn="仙草牛奶" data-mm="မြက်ဂျယ်လီနို့">เฉาก๊วยนมสด</h4>
 <p data-th="40 บาท" data-cn="40 泰铢" data-mm="၄၀ ဘတ်">40 บาท</p>
-<a href="https://lin.ee/P7ziHYL">สั่งเมนูนี้</a>
+<a href="https://lin.ee/P7ziHYL"
+   data-th="สั่งเมนูนี้"
+   data-cn="立即订购"
+   data-mm="မှာယူရန်">
+   สั่งเมนูนี้
+</a>
 </div>
 </div>
 
 </div>
-</div>
+</section>
 
 <footer>
 © ร้านอาหารออนไลน์ | LINE OA
@@ -209,7 +238,7 @@ footer{
 
 <script>
 function setLang(lang){
-  document.querySelectorAll("[data-th]").forEach(el=>{
+  document.querySelectorAll("[data-"+lang+"]").forEach(el=>{
     el.innerText = el.getAttribute("data-"+lang);
   });
 }
