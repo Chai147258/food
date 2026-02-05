@@ -11,7 +11,6 @@
   --bg-soft:#e9f8fb;
   --jelly:#5a3a1a;
   --accent:#ffd400;
-  --dark:#1a1a1a;
 }
 *{box-sizing:border-box}
 body{
@@ -63,14 +62,13 @@ header p{color:var(--accent);font-weight:600}
 }
 #cartItems{font-size:14px;margin-bottom:8px}
 
-/* language */
-.lang-btn{
-  position:fixed;bottom:110px;right:18px;
-  display:flex;flex-direction:column;gap:10px;
+/* order form */
+#orderBox{
+  display:none;margin-top:10px;
 }
-.lang-btn button{
-  width:48px;height:48px;border-radius:50%;
-  border:none;font-size:22px;background:#fff;
+#orderBox input{
+  width:100%;padding:8px;margin-bottom:6px;
+  border-radius:8px;border:1px solid #ccc;
 }
 
 /* footer */
@@ -80,16 +78,9 @@ footer{text-align:center;font-size:13px;padding:24px}
 
 <body>
 
-<!-- language -->
-<div class="lang-btn">
-  <button onclick="setLang('th')">🇹🇭</button>
-  <button onclick="setLang('cn')">🇨🇳</button>
-  <button onclick="setLang('mm')">🇲🇲</button>
-</div>
-
 <header>
-<h1 data-th="ร้านอาหารออนไลน์" data-cn="在线餐厅" data-mm="အွန်လိုင်းစားသောက်ဆိုင်">ร้านอาหารออนไลน์</h1>
-<p data-th="ไม่เน้นขาย เน้นให้คิดถึง" data-cn="不强调销售，强调记住我们" data-mm="သတိရစေခြင်း">ไม่เน้นขาย เน้นให้คิดถึง</p>
+<h1>ร้านอาหารออนไลน์</h1>
+<p>ไม่เน้นขาย เน้นให้คิดถึง</p>
 </header>
 
 <section class="section">
@@ -148,7 +139,14 @@ footer{text-align:center;font-size:13px;padding:24px}
 <div id="cartItems"></div>
 <hr>
 รวม <b><span id="total">0</span></b> บาท
-<button class="order-btn" onclick="orderLine()">สั่งผ่าน LINE</button>
+
+<button class="order-btn" onclick="showOrder()">สั่งซื้อ</button>
+
+<div id="orderBox">
+<input id="custName" placeholder="ชื่อผู้สั่ง">
+<input id="custPhone" placeholder="เบอร์โทร">
+<button class="order-btn" onclick="orderLine()">ยืนยันสั่งผ่าน LINE</button>
+</div>
 </div>
 
 <footer>© ร้านอาหารออนไลน์</footer>
@@ -172,18 +170,27 @@ function renderCart(){
   document.getElementById("total").innerText=total;
 }
 
-function orderLine(){
-  if(cart.length===0){alert("ยังไม่มีสินค้า");return;}
-  let msg="สั่งอาหาร:%0A";
-  cart.forEach(i=>msg+=`- ${i.name} ${i.price}฿%0A`);
-  msg+=`รวม ${document.getElementById("total").innerText} บาท`;
-  window.open("https://lin.ee/P7ziHYL?text="+msg);
+function showOrder(){
+  if(cart.length===0){
+    alert("ยังไม่มีสินค้าในตะกร้า");
+    return;
+  }
+  document.getElementById("orderBox").style.display="block";
 }
 
-function setLang(lang){
-  document.querySelectorAll('[data-'+lang+']').forEach(el=>{
-    el.textContent=el.getAttribute('data-'+lang);
-  });
+function orderLine(){
+  let name=document.getElementById("custName").value.trim();
+  let phone=document.getElementById("custPhone").value.trim();
+  if(!name||!phone){
+    alert("กรุณากรอกชื่อและเบอร์");
+    return;
+  }
+
+  let msg=`ชื่อ: ${name}%0Aเบอร์: ${phone}%0A%0Aรายการ:%0A`;
+  cart.forEach(i=>msg+=`- ${i.name} ${i.price}฿%0A`);
+  msg+=`รวม ${document.getElementById("total").innerText} บาท`;
+
+  window.open("https://lin.ee/P7ziHYL?text="+msg);
 }
 </script>
 
