@@ -1,4 +1,4 @@
-// Import Firebase SDK (แบบ CDN ใช้กับ GitHub Pages ได้)
+// Import Firebase SDK (CDN ใช้กับ GitHub Pages ได้)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -15,7 +15,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Firestore database
+// Initialize Firestore
 const db = getFirestore(app);
+
+// ⭐ สำคัญมาก: เปิดให้ไฟล์อื่นเรียกใช้ได้
+window.db = db;
 
 console.log("🔥 Firebase connected successfully");
