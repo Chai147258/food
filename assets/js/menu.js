@@ -1,38 +1,51 @@
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBxJ7kTwUKR3n8Xosi_aqFqdPJmlKngS0I",
-  authDomain: "lungchai-food.firebaseapp.com",
-  projectId: "lungchai-food",
-  storageBucket: "lungchai-food.firebasestorage.app",
-  messagingSenderId: "138015745718",
-  appId: "1:138015745718:web:5a2065e3ca2c7b638b2817"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// จุดแสดงผล (ต้องมีใน index.html)
+const foodMenu = document.getElementById("foodMenu");
+const drinkMenu = document.getElementById("drinkMenu");
 
 async function loadMenu() {
-  const querySnapshot = await getDocs(collection(db, "menus"));
-  const menuDiv = document.getElementById("menu");
+  // ดึงเฉพาะเมนูที่เปิดขาย
+  const q = query(
+    collection(window.db, "menus"),
+    where("available", "==", true),
+    orderBy("order")
+  );
 
-  menuDiv.innerHTML = "";
+  const querySnapshot = await getDocs(q);
+
+  foodMenu.innerHTML = "";
+  drinkMenu.innerHTML = "";
 
   querySnapshot.forEach((doc) => {
     const item = doc.data();
 
-    menuDiv.innerHTML += `
-      <div class="menu-item">
-        <img src="${item.image}" alt="${item.name_th}">
-        <h3>${item.name_th}</h3>
-        <p>฿${item.price}</p>
-        <a href="https://lin.ee/P7ziHYL" class="order-btn">สั่งอาหาร</a>
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name_th}">
+      <div class="info">
+        <h4>${item.name_th}</h4>
+        <p>${item.price} บาท</p>
+        <a href="#" onclick="addToCart('${doc.id}')">เพิ่มลงตะกร้า</a>
       </div>
     `;
+
+    // แยกหมวด
+    if (item.category === "อาหาร") {
+      foodMenu.appendChild(div);
+    } 
+    else if (item.category === "เครื่องดื่ม") {
+      drinkMenu.appendChild(div);
+    }
   });
 }
 
+// เรียกใช้งาน
 loadMenu();
-</script>
