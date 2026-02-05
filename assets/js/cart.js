@@ -1,45 +1,25 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
 
-function saveCart(){
-  localStorage.setItem("cart", JSON.stringify(cart));
+function addToCart(item){
+  cart.push(item);
+  renderCart();
 }
 
 function renderCart(){
   const box = document.getElementById("cartItems");
   const totalBox = document.getElementById("cartTotal");
-  if(!box || !totalBox) return;
-
   box.innerHTML = "";
   let total = 0;
 
   cart.forEach(i=>{
-    total += i.price * i.qty;
-    box.innerHTML += `
-      <div style="display:flex;justify-content:space-between">
-        <span>${i.name} x ${i.qty}</span>
-        <span>${i.price * i.qty}</span>
-      </div>
-    `;
+    box.innerHTML += `<div>${i.name} - ${i.price} บาท</div>`;
+    total += i.price;
   });
 
-  totalBox.textContent = total;
+  totalBox.innerText = total;
 }
 
-window.addToCart = function(item){
-  const found = cart.find(i=>i.id === item.id);
-  if(found){
-    found.qty++;
-  }else{
-    cart.push({...item, qty:1});
-  }
-  saveCart();
-  renderCart();
-}
-
-window.clearCart = function(){
+function clearCart(){
   cart = [];
-  saveCart();
   renderCart();
 }
-
-renderCart();
